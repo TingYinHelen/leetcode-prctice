@@ -1,10 +1,18 @@
 var uniquePaths = function(m, n) {
-    let result = [[1]];
-    for (let _m = 1; _m <= m; _m++) {
-        for (let _n = 1; _n < n; _n++) {
-            result[_m][_n] = result[_m - 1][_n] + result[_m][_n - 1];
+    const a = Array.from({ length: m+1 }, () => new Array(n+1).fill(undefined));
+    function countPath(m,n) {
+        if (m===1 || n===1) {
+            return 1;
         }
+        if (a[m][n]) {
+            return a[m][n];
+        }
+
+        a[m-1][n] = countPath(m-1,n);
+        a[m][n-1] = countPath(m, n-1);
+        a[m][n] = a[m-1][n] + a[m][n-1];
+        return a[m][n];
     }
-    return 
+    return countPath(m,n);
 };
-console.log('result: ', uniquePaths(3, 2));
+console.log('result: ', uniquePaths(7, 3));
