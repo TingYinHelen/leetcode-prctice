@@ -32,4 +32,4 @@ const head = {
         }
     },
 }
-console.log('result=====', reversePrint(head));
+console.log('result=====', reversePrint(head))
