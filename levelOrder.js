@@ -11,29 +11,7 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    const arr = []
-    root.val && arr.push(root.val)
-    function bfs (_arr) {
-        return _arr
-    }
-    arr.push(bfs())
+    let level = 1;
+    const queue = [];
+    
 };
-
-
-
-const root = {
-    val: 3,
-    left: {
-        val: 9,
-        left: null,
-        right: null
-    },
-    right: {
-        val: 20,
-        left: { val: 15 },
-        right: { val: 7 },
-    }
-}
-
-
-console.log('levelOrder(root)====', levelOrder(root))
