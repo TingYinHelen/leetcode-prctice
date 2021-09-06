@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var mirrorTree = function(root) {
+        function turn(node) {
+            if (!node) {
+                return null;
+            }
+            let tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+            turn(node.left)
+            turn(node.right)
+        }
+        turn(root);
+        return root;
+    };
+    const root = {
+        val: 1, 
+        left: {
+            val: 2,
+        },
+    };
+    console.log(mirrorTree(root));
+</script>
+</body>
+</html>
