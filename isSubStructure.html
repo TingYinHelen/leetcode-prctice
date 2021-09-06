@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /**
+ * @param {TreeNode} A
+ * @param {TreeNode} B
+ * @return {boolean}
+ */
+
+        var isSubStructure = function(A, B) {
+            if (!B || !A) {
+                return false;
+            }
+
+            const recur = (nodeA, nodeB) => {
+                if (!nodeB) {
+                    return true;
+                }
+                if (!nodeA || nodeA.val !== nodeB.val) {
+                    return false;
+                }
+                return recur(nodeA.left, nodeB.left) && recur(nodeA.right, nodeB.right);
+            }
+
+            return (B && A) && (recur(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));
+        };
+
+
+
+// [3,5,0,3,4]
+// [1,-4,2,-1,3,-3,-4,0,-3,-1]
+
+        const A = {
+            val: -2,
+            left: {
+                val: 1,
+            },
+        }
+        const B = {
+            val: -2,
+            left: {
+                val: 1,
+            },
+            right: {
+                val: -2,
+            },
+        };
+        console.log('============', isSubStructure(A.left, B));
+
+    </script>
+</body>
+</html>
