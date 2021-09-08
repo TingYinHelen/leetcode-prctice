@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const cache = {
+            0: 0,
+            1: 1,
+        };
+        var fib = function(n) {
+            if (cache[n] !== undefined) {
+                return cache[n];
+            }
+            cache[n] = (fib(n - 1) + fib(n - 2)) % (1e9 + 7);
+            return cache[n];
+        }
+
+
+        console.log('[ fib(0) ]', fib(45))
+        // function * _fib (n) {
+        //     let [curr, next] = [0, 1]
+        //     for (let i = 0; i < n; i++) {
+        //         yield curr
+        //         curr = next
+        //         next = curr + next
+        //     }
+        // }
+        // var fib = function(n) {
+        //     let index = 0
+        //     for (const it of _fib(n)) {
+        //         index++
+        //         if (index === n) {
+        //             return it
+        //         }
+        //     }
+        // };
+    </script>
+</body>
+</html>

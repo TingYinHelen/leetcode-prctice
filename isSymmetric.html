@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// var isSymmetric = function(root) {
+//     const stack = [];
+//     const queue = [root];
+//     const pushNodeToStack = (node) => {
+//         if (node === undefined) {
+//             return;
+//         }
+//         if (stack.length > 0) {
+//             if (typeof node === 'string' || typeof stack[stack.length - 1] === 'string') {
+//                 if (node === stack[stack.length - 1]) {
+//                     stack.pop();
+//                 } else {
+//                     stack.push(node);
+//                 }
+//             } else {
+//                 if (node.val === stack[stack.length - 1].val) {
+//                     stack.pop();
+//                 } else {
+//                     stack.push(node);
+//                 }
+//             }
+//         } else {
+//             stack.push(node);
+//         }
+//     }
+//     while (queue.length > 0) {
+//         const node = queue.shift();
+//         if (node.left) {
+//             queue.push(node.left);
+//             pushNodeToStack(node.left);
+//         } else {
+//             pushNodeToStack('leftNull');
+//         }
+//         if (node.right) {
+//             queue.push(node.right);
+//             pushNodeToStack(node.right);
+//         } else {
+//             pushNodeToStack('rightNull');
+//         }
+//     }
+//     return stack.length === 0;
+// };
+// const isSymmetricalTree = function (node1, node2) {
+//     if (!node1 && !node2) {
+//         return true;
+//     }
+//     if (!node1 || !node2) {
+//         return false;
+//     }
+//     if (node1.val !== node2.val) {
+//         return false;
+//     }
+//     return isSymmetricalTree(node1.left, node2.right) && isSymmetricalTree(node1.right, node2.left);
+// }
+// const isSymmetric = function (root) {
+//     return isSymmetricalTree(root, root);
+// }
+
+function help(arr) {
+    let left = 0, right = arr.length-1;
+    while (left < right) {
+        if (arr[left] === null || arr[right] === null) {
+            if (arr[left] !== arr[right]) {
+                return false;
+            }
+        } else {
+            if (arr[left].val !== arr[right].val) {
+                return false;
+            }
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
+
+var isSymmetric = function(root) {
+    const queue = [root];
+    while (queue.length > 0) {
+        if (!help(queue)) {
+            return false;
+        }
+        // 下面这个循环结束之后下一层的数据就已经在queue中了
+        // 上一层的数据全部被shift掉了
+        const len = queue.length;
+        for (let i = 0; i < len; i++) {
+            const node = queue.shift();
+            queue.push(node.left);
+            queue.push(node.right);
+        }
+    }
+    return true;
+}
+
+const root = {
+    val: 1,
+    left: {
+        val: 2,
+        left: {
+            val: 3,
+        },
+        right: {
+            val: 4.
+        }
+    },
+    right: {
+        val: 2,
+        left: {
+            val: 4,
+        },
+        right: {
+            val: 3,
+        }
+    }
+}
+
+// const root = {
+//     val: 2,
+//     left: {
+//         val: 3,
+//         left: {
+//             val: 4,
+//         },
+//         right: {
+//             val: 5,
+//             left: {
+//                 val: 8,
+//             },
+//             right: {
+//                 val: 9,
+//             },
+//         },
+//     },
+//     right: {
+//         val: 3,
+//         left: {
+//             val: 5,
+//         },
+//         right: {
+//             val: 4,
+//             left: {
+//                 val: 9,
+//             },
+//             right: {
+//                 val: 8
+//             },
+//         }
+//     }
+// }
+
+console.log(isSymmetric(root));
+</script>
+</body>
+</html>
