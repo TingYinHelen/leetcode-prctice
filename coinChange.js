@@ -1,22 +1,22 @@
-function coinChange (coins, amount) {
-    const memo = [];
-    function dp (n) {
-        if (n === 0) return 0;
-        if (n < 0) return -1;
-        if (memo[n] !== undefined) return memo[n];
-        let res = Infinity;
-        for (const coin of coins) {
-            const sub = dp(n - coin);
-            memo[n - coin] = sub;
-            if (sub === -1) continue;
-            res = Math.min(res, sub + 1);
-        }
-        if (res === Infinity) return -1;
-        return res;
-    }
+// function coinChange (coins, amount) {
+//     const memo = [];
+//     function dp (n) {
+//         if (n === 0) return 0;
+//         if (n < 0) return -1;
+//         if (memo[n] !== undefined) return memo[n];
+//         let res = Infinity;
+//         for (const coin of coins) {
+//             const sub = dp(n - coin);
+//             memo[n - coin] = sub;
+//             if (sub === -1) continue;
+//             res = Math.min(res, sub + 1);
+//         }
+//         if (res === Infinity) return -1;
+//         return res;
+//     }
 
-    return dp(amount);
-}
+//     return dp(amount);
+// }
 
 function coinChange (coins, amount) {
     const dp = new Array(amount + 1).fill(amount + 1);
