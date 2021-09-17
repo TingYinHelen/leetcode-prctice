@@ -8,28 +8,41 @@
 </head>
 <body>
     <script>
+        // var deleteNode = function(head, val) {
+        //     let prev = head;
+        //     let curr = head.next; 
+        //     if (prev.val === val) {
+        //         return prev.next;
+        //     }
+        //     if (curr.val === val) {
+        //         prev.next = curr.next;
+        //         return head;
+        //     }
+        //     function find (node) {
+        //         if (node.val === val) {
+        //             prev.next = node.next;
+        //             return head;
+        //         } else {
+        //             prev = curr;
+        //             curr = curr.next;
+        //             const res = find(curr);
+        //             return res;
+        //         }
+        //     }
+        //     return find(curr);
+        // };
         var deleteNode = function(head, val) {
             let prev = head;
-            let curr = head.next; 
+            let curr = head.next;
             if (prev.val === val) {
                 return prev.next;
             }
-            if (curr.val === val) {
-                prev.next = curr.next;
-                return head;
+            while (curr.val !== val) {
+                prev = curr;
+                curr = curr.next;
             }
-            function find (node) {
-                if (node.val === val) {
-                    prev.next = node.next;
-                    return head;
-                } else {
-                    prev = curr;
-                    curr = curr.next;
-                    const res = find(curr);
-                    return res;
-                }
-            }
-            return find(curr);
+            prev.next = curr.next;
+            return head;
         };
         const head = {
             val: 4,
